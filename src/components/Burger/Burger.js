@@ -4,7 +4,7 @@ import { BurgerIngridient } from './BurgerIngridient/BurgerIngridient';
 import classes from './Burger.module.scss'
 
 export const Burger = (props) => {
-  
+
   let transformIngredients = Object.keys(props.ingredients)
     .map(
       igKey => {
@@ -13,7 +13,6 @@ export const Burger = (props) => {
             (_, i) => <BurgerIngridient key={igKey + i} type={igKey} />)
       })
     .reduce((arr, ingr) => { return arr.concat(ingr) }, []);
-
 
   if (transformIngredients.length === 0) {
     transformIngredients = <p>Please start adding ingredients!</p>
@@ -26,4 +25,4 @@ export const Burger = (props) => {
       <BurgerIngridient type="bread-bottom"></BurgerIngridient>
     </div>
   );
-}
+}git
