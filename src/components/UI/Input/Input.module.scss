@@ -1,0 +1,19 @@
+.InputElement {
+  width: 90%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  font-size: larger;
+
+  &:focus {
+    outline: none;
+    border-color: #ccc;
+  }
+}
+
+.Invalid {
+  border: 1px solid red;
+  background-color: rgb(248, 191, 170);
+}

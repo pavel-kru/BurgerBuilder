@@ -1,0 +1,48 @@
+.NavigationItem {
+  margin: 10px 0;
+  box-sizing: border-box;
+  width: 100%;
+  a {
+    color: cornflowerblue;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    &:hover,
+    &:active {
+      color: lightskyblue;
+    }
+  }
+  a.active {
+       color: lightskyblue;
+  }
+}
+
+@media(min-width: 500px) {
+  .NavigationItem {
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    width: auto;
+    align-items: center;
+    a {
+      color: white;
+      height: 100%;
+      padding: 16px 10px;
+      border-bottom: 4px solid transparent;
+       &:hover,
+      &:active {
+        background-color: rgb(199, 159, 159);
+        border-bottom: 4px solid cornflowerblue;
+        color: white;
+      }
+    }
+    a.active {
+      background-color: rgb(199, 159, 159);
+      border-bottom: 4px solid cornflowerblue;
+      color: white;
+    }
+  }
+  
+}
