@@ -7,9 +7,13 @@ import { ToolBar } from "../../components/Navigation/ToolBar/ToolBar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 
 class Layout extends Component {
-  state = {
-    showSideDrawer: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSideDrawer: false,
+    };
+  }
+
   SideDrawerCloseHandler = () => {
     this.setState({ showSideDrawer: false });
   };
@@ -39,7 +43,7 @@ class Layout extends Component {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.token !== null,
-     };
+  };
 };
 
 export default connect(mapStateToProps)(Layout);
