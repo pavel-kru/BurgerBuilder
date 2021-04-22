@@ -9,108 +9,97 @@ import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
 import * as actions from "../../../store/actions/order";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
+import { updateState, checkValidity } from "../../../shared/utility";
 
 class ContactData extends Component {
-  state = {
-    orderForm: {
-      name: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your Name",
+  constructor(props) {
+    super(props);
+    this.state = {
+      orderForm: {
+        name: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your Name",
+          },
+          value: "",
+          validation: { required: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true },
-        valid: false,
-        touched: false,
-      },
-      phone: {
-        elementType: "input",
-        elementConfig: {
-          type: "tel",
-          placeholder: "Your Phone Number",
+        phone: {
+          elementType: "input",
+          elementConfig: {
+            type: "tel",
+            placeholder: "Your Phone Number",
+          },
+          value: "",
+          validation: { required: true, isTel: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true, isTel: true },
-        valid: false,
-        touched: false,
-      },
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "Your E-mail",
+        email: {
+          elementType: "input",
+          elementConfig: {
+            type: "email",
+            placeholder: "Your E-mail",
+          },
+          value: "",
+          validation: { required: true, isMail: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true, isMail: true },
-        valid: false,
-        touched: false,
-      },
-      street: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your Street",
+        street: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your Street",
+          },
+          value: "",
+          validation: { required: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true },
-        valid: false,
-        touched: false,
-      },
-      house: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your House",
+        house: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your House",
+          },
+          value: "",
+          validation: { required: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true },
-        valid: false,
-        touched: false,
-      },
-      deliveryMethod: {
-        elementType: "select",
-        elementConfig: {
-          options: [
-            { value: "fastest", displayName: "Fastest" },
-            { value: "cheapest", displayName: "Cheapest" },
-          ],
+        deliveryMethod: {
+          elementType: "select",
+          elementConfig: {
+            options: [
+              { value: "fastest", displayName: "Fastest" },
+              { value: "cheapest", displayName: "Cheapest" },
+            ],
+          },
+          value: "fastest",
+          valid: true,
+          validation: {},
         },
-        value: "fastest",
-        valid: true,
-        validation: {},
       },
-    },
-    formIsValid: false,
-  };
-
-    checkValidity(value, rules) {
-      let isValid = true;
-      if (rules.required) {
-        isValid = value.trim() !== "" && isValid;
-      }
-      if (rules.isMail) {
-        const pattern = /^[\w]{1}[\w-.]*@[\w-]+\.[a-z]{2,4}$/i;
-        isValid = pattern.test(value) && isValid;
-      }
-      if (rules.isTel) {
-        const pattern = /^[\d+][\d()-]{7,19}\d$/;
-        isValid = pattern.test(value) && isValid;
-      }
-      return isValid;
-    }
+      formIsValid: false,
+    };
+  }
 
   changeFormValueHandler(event, idx) {
-    const updatedOrderForm = { ...this.state.orderForm };
-    const updatedFormElement = { ...updatedOrderForm[idx] };
-    updatedFormElement.value = event.target.value;
-    updatedFormElement.touched = true;
-    updatedFormElement.valid = this.checkValidity(
-      updatedFormElement.value,
-      updatedFormElement.validation
-    );
-    updatedOrderForm[idx] = updatedFormElement;
-
+    const updatedFormElement = updateState(this.state.orderForm[idx], {
+      value: event.target.value,
+      touched: true,
+      valid: checkValidity(
+        event.target.value,
+        this.state.orderForm[idx].validation
+      ),
+    });
+    const updatedOrderForm = updateState(this.state.orderForm, {
+      [idx]: updatedFormElement,
+    });
     let formIsValid = true;
 
     for (let inputIdx in updatedOrderForm) {
@@ -131,7 +120,7 @@ class ContactData extends Component {
       ingredients: this.props.ingr,
       price: this.props.price,
       orderData: formData,
-      userId: this.props.userId
+      userId: this.props.userId,
     };
 
     this.props.onOrderBurger(order, this.props.token);
@@ -191,13 +180,14 @@ const mapStateToProps = (state) => {
     loading: state.order.loading,
     confirmed: state.order.orderConfirmed,
     token: state.auth.token,
-    userId: state.auth.userId
+    userId: state.auth.userId,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onOrderBurger: (orderData, token) => dispatch(actions.burgerOrder(orderData, token)),
+    onOrderBurger: (orderData, token) =>
+      dispatch(actions.burgerOrder(orderData, token)),
   };
 };
 
