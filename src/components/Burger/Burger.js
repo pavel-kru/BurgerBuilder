@@ -25,4 +25,4 @@ export const Burger = (props) => {
       <BurgerIngridient type="bread-bottom"></BurgerIngridient>
     </div>
   );
-}git
+}
