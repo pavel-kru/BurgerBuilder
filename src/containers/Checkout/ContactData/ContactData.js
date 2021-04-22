@@ -9,10 +9,9 @@ import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
 import * as actions from "../../../store/actions/order";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
-import { updateState, checkValidity } from "../../../shared/utility";
 
 class ContactData extends Component {
-  constructor(props) {
+ constructor(props) {
     super(props);
     this.state = {
       orderForm: {
@@ -87,19 +86,35 @@ class ContactData extends Component {
       formIsValid: false,
     };
   }
+  
+
+    checkValidity(value, rules) {
+      let isValid = true;
+      if (rules.required) {
+        isValid = value.trim() !== "" && isValid;
+      }
+      if (rules.isMail) {
+        const pattern = /^[\w]{1}[\w-.]*@[\w-]+\.[a-z]{2,4}$/i;
+        isValid = pattern.test(value) && isValid;
+      }
+      if (rules.isTel) {
+        const pattern = /^[\d+][\d()-]{7,19}\d$/;
+        isValid = pattern.test(value) && isValid;
+      }
+      return isValid;
+    }
 
   changeFormValueHandler(event, idx) {
-    const updatedFormElement = updateState(this.state.orderForm[idx], {
-      value: event.target.value,
-      touched: true,
-      valid: checkValidity(
-        event.target.value,
-        this.state.orderForm[idx].validation
-      ),
-    });
-    const updatedOrderForm = updateState(this.state.orderForm, {
-      [idx]: updatedFormElement,
-    });
+    const updatedOrderForm = { ...this.state.orderForm };
+    const updatedFormElement = { ...updatedOrderForm[idx] };
+    updatedFormElement.value = event.target.value;
+    updatedFormElement.touched = true;
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
+    updatedOrderForm[idx] = updatedFormElement;
+
     let formIsValid = true;
 
     for (let inputIdx in updatedOrderForm) {
@@ -120,7 +135,7 @@ class ContactData extends Component {
       ingredients: this.props.ingr,
       price: this.props.price,
       orderData: formData,
-      userId: this.props.userId,
+      userId: this.props.userId
     };
 
     this.props.onOrderBurger(order, this.props.token);
@@ -180,14 +195,13 @@ const mapStateToProps = (state) => {
     loading: state.order.loading,
     confirmed: state.order.orderConfirmed,
     token: state.auth.token,
-    userId: state.auth.userId,
+    userId: state.auth.userId
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onOrderBurger: (orderData, token) =>
-      dispatch(actions.burgerOrder(orderData, token)),
+    onOrderBurger: (orderData, token) => dispatch(actions.burgerOrder(orderData, token)),
   };
 };
 

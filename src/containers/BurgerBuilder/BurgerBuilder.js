@@ -20,9 +20,7 @@ class BurgerBuilder extends Component {
     }
   }
 
-
-  componentDidMount() {
-    
+    componentDidMount() {
     this.props.onInitIngredients();
       }
 
@@ -35,12 +33,12 @@ class BurgerBuilder extends Component {
     return sum > 0;
   };
 
-  
+ 
   purchaseHandler = () => {
     this.props.isAuthanticated
       ? this.setState({ purchasing: true })
       : this.props.history.push("/auth");
-    };
+  };
 
   purchaseContinueHandler = () => {
     this.props.history.push("/checkout");

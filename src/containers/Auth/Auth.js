@@ -7,7 +7,6 @@ import { Button } from "../../components/UI/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import classes from "./Auth.module.scss";
 import * as actions from "../../store/actions/auth";
-import { updateState, checkValidity } from "../../shared/utility";
 
 class Auth extends Component {
   constructor(props) {
@@ -38,21 +37,41 @@ class Auth extends Component {
         },
       },
       isSignUp: true,
-    }
+    };
   }
- 
+  checkValidity(value, rules) {
+    let isValid = true;
+    if (rules.required) {
+      isValid = value.trim() !== "" && isValid;
+    }
+    if (rules.isMail) {
+      const pattern = /^[\w]{1}[\w-.]*@[\w-]+\.[a-z]{2,4}$/i;
+      isValid = pattern.test(value) && isValid;
+    }
+    if (rules.isTel) {
+      const pattern = /^[\d+][\d()-]{7,19}\d$/;
+      isValid = pattern.test(value) && isValid;
+    }
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+
+    return isValid;
+  }
+
   changeFormValueHandler = (event, contorolName) => {
-    const updatedAuthForm = updateState(this.state.authForm, {
-      [contorolName]: updateState(this.state.authForm[contorolName], {
+    const updatedAuthForm = {
+      ...this.state.authForm,
+      [contorolName]: {
+        ...this.state.authForm[contorolName],
         value: event.target.value,
-        valid: checkValidity(
+        valid: this.checkValidity(
           event.target.value,
           this.state.authForm[contorolName].validation
         ),
         touched: true,
-      }),
-    });
-
+      },
+    };
     this.setState({ authForm: updatedAuthForm });
   };
 

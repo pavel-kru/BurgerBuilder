@@ -4,6 +4,7 @@ import { BurgerIngridient } from './BurgerIngridient/BurgerIngridient';
 import classes from './Burger.module.scss'
 
 export const Burger = (props) => {
+
   let transformIngredients = Object.keys(props.ingredients)
     .map(
       igKey => {
@@ -24,4 +25,4 @@ export const Burger = (props) => {
       <BurgerIngridient type="bread-bottom"></BurgerIngridient>
     </div>
   );
-}
+}git
