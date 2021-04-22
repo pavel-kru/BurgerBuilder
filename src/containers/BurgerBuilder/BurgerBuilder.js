@@ -13,31 +13,18 @@ import * as actions from "../../store/actions/burgerBuilder";
 import * as orderActions from "../../store/actions/order";
 
 class BurgerBuilder extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      purchasing: false,
+    }
+  }
 
-  //   }
-  // }
-
-  state = {
-    purchasing: false,
-    // loading: false,
-    // error: false,
-  };
 
   componentDidMount() {
-    console.log(this.props);
+    
     this.props.onInitIngredients();
-    //   axios
-    //     .get(
-    //       "https://burger-builder-b8bbf-default-rtdb.firebaseio.com/ingredients.json"
-    //     )
-    //     .then((response) => {
-    //       this.setState({ ingredients: response.data });
-    //     })
-    //     .catch(( ) => this.setState({ error: true }));
-  }
+      }
 
   updatePurchasable = (ingredients) => {
     let sum = Object.keys(ingredients)
@@ -48,53 +35,17 @@ class BurgerBuilder extends Component {
     return sum > 0;
   };
 
-  // ingredientsAddHandler = (type) => {
-  //   let newCount = this.props.ingr[type] + 1;
-  //   const updateIngredients = {
-  //     ...this.props.ingr,
-  //   };
-  //   updateIngredients[type] = newCount;
-  //   let newPrice = this.props.price + INGREDIENTS_PRICE[type];
-  //   this.setState({ ingredients: updateIngredients, price: newPrice });
-  //   this.updatePurchasable(updateIngredients);
-  // };
-
-  // ingredientsRemoveHandler = (type) => {
-  //   let newCount = this.props.ingr[type] - 1;
-  //   if (newCount < 0) return;
-  //   const updateIngredients = {
-  //     ...this.props.ingr,
-  //   };
-  //   updateIngredients[type] = newCount;
-  //   let newPrice = this.props.price - INGREDIENTS_PRICE[type];
-  //   this.setState({ ingredients: updateIngredients, price: newPrice });
-  //   this.updatePurchasable(updateIngredients);
-  // };
-
+  
   purchaseHandler = () => {
     this.props.isAuthanticated
       ? this.setState({ purchasing: true })
       : this.props.history.push("/auth");
-    console.log(this.state.purchasing);
-  };
+    };
 
   purchaseContinueHandler = () => {
     this.props.history.push("/checkout");
     this.props.onOrderInit();
-    // alert("You continue!");
-    // const queryParams = [];
-    // for (let i in this.props.ingr) {
-    //   queryParams.push(
-    //     encodeURIComponent(i) + "=" + encodeURIComponent(this.props.ingr[i])
-    //   );
-    // }
-    // queryParams.push("price=" + this.props.price);
-    // const queryString = queryParams.join("&");
-    // this.props.history.push({
-    //   pathname: "/checkout",
-    //   search: "?" + queryString,
-    // });
-  };
+      };
 
   purchaseCloseHandler = () => {
     this.setState({ purchasing: false });
@@ -142,11 +93,7 @@ class BurgerBuilder extends Component {
       );
     }
 
-    // if (this.state.loading) {
-    //   orderModal = <Spinner />;
-    // }
-
-    return (
+     return (
       <Aux>
         <Modal show={this.state.purchasing} close={this.purchaseCloseHandler}>
           {orderModal}

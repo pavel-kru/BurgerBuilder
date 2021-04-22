@@ -7,69 +7,52 @@ import { Button } from "../../components/UI/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import classes from "./Auth.module.scss";
 import * as actions from "../../store/actions/auth";
+import { updateState, checkValidity } from "../../shared/utility";
 
 class Auth extends Component {
-  state = {
-    authForm: {
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "E-mail",
+  constructor(props) {
+    super(props);
+    this.state = {
+      authForm: {
+        email: {
+          elementType: "input",
+          elementConfig: {
+            type: "email",
+            placeholder: "E-mail",
+          },
+          value: "",
+          validation: { required: true, isMail: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true, isMail: true },
-        valid: false,
-        touched: false,
-      },
-      password: {
-        elementType: "input",
-        elementConfig: {
-          type: "password",
-          placeholder: "Password",
+        password: {
+          elementType: "input",
+          elementConfig: {
+            type: "password",
+            placeholder: "Password",
+          },
+          value: "",
+          validation: { required: true, minLength: 6 },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true, minLength: 6 },
-        valid: false,
-        touched: false,
       },
-    },
-    isSignUp: true,
-  };
-
-  checkValidity(value, rules) {
-    let isValid = true;
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
+      isSignUp: true,
     }
-    if (rules.isMail) {
-      const pattern = /^[\w]{1}[\w-.]*@[\w-]+\.[a-z]{2,4}$/i;
-      isValid = pattern.test(value) && isValid;
-    }
-    if (rules.isTel) {
-      const pattern = /^[\d+][\d()-]{7,19}\d$/;
-      isValid = pattern.test(value) && isValid;
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    return isValid;
   }
-
+ 
   changeFormValueHandler = (event, contorolName) => {
-    const updatedAuthForm = {
-      ...this.state.authForm,
-      [contorolName]: {
-        ...this.state.authForm[contorolName],
+    const updatedAuthForm = updateState(this.state.authForm, {
+      [contorolName]: updateState(this.state.authForm[contorolName], {
         value: event.target.value,
-        valid: this.checkValidity(
+        valid: checkValidity(
           event.target.value,
           this.state.authForm[contorolName].validation
         ),
         touched: true,
-      },
-    };
+      }),
+    });
+
     this.setState({ authForm: updatedAuthForm });
   };
 
