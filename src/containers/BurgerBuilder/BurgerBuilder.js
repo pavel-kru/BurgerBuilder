@@ -13,31 +13,16 @@ import * as actions from "../../store/actions/burgerBuilder";
 import * as orderActions from "../../store/actions/order";
 
 class BurgerBuilder extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-
-  //   }
-  // }
-
-  state = {
-    purchasing: false,
-    // loading: false,
-    // error: false,
-  };
-
-  componentDidMount() {
-    console.log(this.props);
-    this.props.onInitIngredients();
-    //   axios
-    //     .get(
-    //       "https://burger-builder-b8bbf-default-rtdb.firebaseio.com/ingredients.json"
-    //     )
-    //     .then((response) => {
-    //       this.setState({ ingredients: response.data });
-    //     })
-    //     .catch(( ) => this.setState({ error: true }));
+  constructor(props) {
+    super(props);
+    this.state = {
+      purchasing: false,
+    }
   }
+
+    componentDidMount() {
+    this.props.onInitIngredients();
+      }
 
   updatePurchasable = (ingredients) => {
     let sum = Object.keys(ingredients)
@@ -75,7 +60,6 @@ class BurgerBuilder extends Component {
     this.props.isAuthanticated
       ? this.setState({ purchasing: true })
       : this.props.history.push("/auth");
-    console.log(this.state.purchasing);
   };
 
   purchaseContinueHandler = () => {

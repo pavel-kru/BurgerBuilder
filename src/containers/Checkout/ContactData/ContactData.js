@@ -11,78 +11,82 @@ import * as actions from "../../../store/actions/order";
 import withErrorHandler from "../../../hoc/withErrorHandler/withErrorHandler";
 
 class ContactData extends Component {
-  state = {
-    orderForm: {
-      name: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your Name",
+ constructor(props) {
+    super(props);
+    this.state = {
+      orderForm: {
+        name: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your Name",
+          },
+          value: "",
+          validation: { required: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true },
-        valid: false,
-        touched: false,
-      },
-      phone: {
-        elementType: "input",
-        elementConfig: {
-          type: "tel",
-          placeholder: "Your Phone Number",
+        phone: {
+          elementType: "input",
+          elementConfig: {
+            type: "tel",
+            placeholder: "Your Phone Number",
+          },
+          value: "",
+          validation: { required: true, isTel: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true, isTel: true },
-        valid: false,
-        touched: false,
-      },
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "Your E-mail",
+        email: {
+          elementType: "input",
+          elementConfig: {
+            type: "email",
+            placeholder: "Your E-mail",
+          },
+          value: "",
+          validation: { required: true, isMail: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true, isMail: true },
-        valid: false,
-        touched: false,
-      },
-      street: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your Street",
+        street: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your Street",
+          },
+          value: "",
+          validation: { required: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true },
-        valid: false,
-        touched: false,
-      },
-      house: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your House",
+        house: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your House",
+          },
+          value: "",
+          validation: { required: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true },
-        valid: false,
-        touched: false,
-      },
-      deliveryMethod: {
-        elementType: "select",
-        elementConfig: {
-          options: [
-            { value: "fastest", displayName: "Fastest" },
-            { value: "cheapest", displayName: "Cheapest" },
-          ],
+        deliveryMethod: {
+          elementType: "select",
+          elementConfig: {
+            options: [
+              { value: "fastest", displayName: "Fastest" },
+              { value: "cheapest", displayName: "Cheapest" },
+            ],
+          },
+          value: "fastest",
+          valid: true,
+          validation: {},
         },
-        value: "fastest",
-        valid: true,
-        validation: {},
       },
-    },
-    formIsValid: false,
-  };
+      formIsValid: false,
+    };
+  }
+  
 
     checkValidity(value, rules) {
       let isValid = true;

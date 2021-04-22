@@ -9,34 +9,36 @@ import classes from "./Auth.module.scss";
 import * as actions from "../../store/actions/auth";
 
 class Auth extends Component {
-  state = {
-    authForm: {
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "E-mail",
+  constructor(props) {
+    super(props);
+    this.state = {
+      authForm: {
+        email: {
+          elementType: "input",
+          elementConfig: {
+            type: "email",
+            placeholder: "E-mail",
+          },
+          value: "",
+          validation: { required: true, isMail: true },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true, isMail: true },
-        valid: false,
-        touched: false,
-      },
-      password: {
-        elementType: "input",
-        elementConfig: {
-          type: "password",
-          placeholder: "Password",
+        password: {
+          elementType: "input",
+          elementConfig: {
+            type: "password",
+            placeholder: "Password",
+          },
+          value: "",
+          validation: { required: true, minLength: 6 },
+          valid: false,
+          touched: false,
         },
-        value: "",
-        validation: { required: true, minLength: 6 },
-        valid: false,
-        touched: false,
       },
-    },
-    isSignUp: true,
-  };
-
+      isSignUp: true,
+    };
+  }
   checkValidity(value, rules) {
     let isValid = true;
     if (rules.required) {

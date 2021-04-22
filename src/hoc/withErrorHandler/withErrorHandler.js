@@ -5,9 +5,12 @@ import Modal from "../../components/UI/Modal/Modal";
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
-    state = {
-      error: null,
-    };
+    constructor(props) {
+      super(props);
+      this.state = {
+        error: null,
+      };
+    }
 
     componentWillMount() {
       this.reqIntersaptor = axios.interceptors.request.use((req) => {
@@ -23,7 +26,6 @@ const withErrorHandler = (WrappedComponent, axios) => {
     }
 
     componentWillUnmount() {
-      // console.log('will unmount', this.reqIntersaptor, this.respIntersaptor);
       axios.interceptors.request.eject(this.reqIntersaptor);
       axios.interceptors.response.eject(this.respIntersaptor);
     }
