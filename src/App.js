@@ -4,12 +4,8 @@ import { connect } from "react-redux";
 
 import Layout from "./hoc/Layout/Layout";
 import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
-// import Checkout from "./containers/Checkout/Checkout";
-// import Orders from "./containers/Orders/Orders";
-// import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions/auth";
-import Spinner from "./components/UI/Spinner/Spinner";
 import asyncComponent from './hoc/asyncComponent/asyncComponent'
 
 const asyncCheckout = asyncComponent(() => import("./containers/Checkout/Checkout"));
