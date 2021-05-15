@@ -1,5 +1,5 @@
 import * as actionsTypes from "../actions/actionsTypes";
-import { updateState } from "../../shared/utility";
+import { updateObject } from "../../shared/utility";
 
 const initialState = {
   userId: null,
@@ -11,18 +11,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionsTypes.AUTH_START:
-      return updateState(state, { loading: true, error: null });
+      return updateObject(state, { loading: true, error: null });
     case actionsTypes.AUTH_SUCCESS:
-      return updateState(state, {
+      return updateObject(state, {
         userId: action.userId,
         token: action.idToken,
         error: false,
         loading: false,
       });
     case actionsTypes.AUTH_FAIL:
-      return updateState(state, { error: action.error, loading: false });
+      return updateObject(state, { error: action.error, loading: false });
     case actionsTypes.AUTH_LOGOUT:
-      return updateState(state, {
+      return updateObject(state, {
         userId: null,
         token: null,
       });

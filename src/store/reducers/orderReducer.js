@@ -1,5 +1,5 @@
 import * as actionsTypes from "../actions/actionsTypes";
-import { updateState } from "../../shared/utility";
+import { updateObject } from "../../shared/utility";
 
 const initialState = {
   orders: [],
@@ -10,14 +10,14 @@ const initialState = {
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionsTypes.BURGER_ORDER_START:
-      return updateState(state, { loading: true });
+      return updateObject(state, { loading: true });
 
     case actionsTypes.BURGER_ORDER_INIT:
-      return updateState(state, { orderConfirmed: false });
+      return updateObject(state, { orderConfirmed: false });
 
     case actionsTypes.BURGER_ORDER_SUCCESS:
-      const newOrder = updateState(action.orderData, { id: action.orderId });
-      return updateState(state, {
+      const newOrder = updateObject(action.orderData, { id: action.orderId });
+      return updateObject(state, {
         loading: false,
         orders: state.orders.concat(newOrder),
         error: false,
@@ -25,19 +25,19 @@ const orderReducer = (state = initialState, action) => {
       });
 
     case actionsTypes.BURGER_ORDER_FAIL:
-      return updateState(state, { loading: false });
+      return updateObject(state, { loading: false });
 
     case actionsTypes.ORDERS_FETCH_SUCCESS:
-      return updateState(state, {
+      return updateObject(state, {
         orders: action.orders,
         loading: false,
       });
 
     case actionsTypes.ORDERS_FETCH_FAIL:
-      return updateState(state, { loading: false });
+      return updateObject(state, { loading: false });
 
     case actionsTypes.ORDERS_FETCH_START:
-      return updateState(state, { loading: true });
+      return updateObject(state, { loading: true });
 
     default:
       return state;

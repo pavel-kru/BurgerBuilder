@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export const BurgerIngridient = (props) => {
   let ingridient = null;
+  
   switch(props.type) {
     case ('bread-bottom'): 
       ingridient = <div className={classes.BreadBottom}></div>;
