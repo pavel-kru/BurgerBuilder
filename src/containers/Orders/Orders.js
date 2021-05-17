@@ -7,30 +7,35 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../store/actions/order";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
-const Orders = props => {
-  const {onFetchOrders} = props
+const Orders = (props) => {
+  const { onFetchOrders } = props;
   useEffect(() => {
-   onFetchOrders(props.token, props.userId);
-     }, [onFetchOrders])
+    onFetchOrders(props.token, props.userId);
+  }, [onFetchOrders, props.token, props.userId]);
 
- 
-    let orders = <Spinner />;
-    if (!props.loading) {
-      orders = (
-        <div style={{ marginTop: "100px" }}>
-          {props.orders.map((order) => (
+  let orders = null;
+  if (!props.loading) {
+    orders = (
+      <div style={{ marginTop: "100px" }}>
+        {props.orders.length === 0 ? (
+          <p style={{ textAlign: "center", fontSize: "1.7rem", marginTop: "50%" }}>
+            You don't have any orders.
+          </p>
+        ) : (
+          props.orders.map((order) => (
             <Order
               key={order.id}
               ingredients={order.ingredients}
               price={+order.price}
             />
-          ))}
-        </div>
-      );
-    }
+          ))
+        )}
+      </div>
+    );
+  }
 
-    return orders;
-}
+  return orders;
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -43,7 +48,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchOrders: (token, userId) => dispatch(actions.fetchedOrders(token, userId)),
+    onFetchOrders: (token, userId) =>
+      dispatch(actions.fetchedOrders(token, userId)),
   };
 };
 

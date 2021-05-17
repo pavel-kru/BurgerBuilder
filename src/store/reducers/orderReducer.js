@@ -24,10 +24,13 @@ const orderReducer = (state = initialState, action) => {
         orderConfirmed: true,
       });
 
-    case actionsTypes.BURGER_ORDER_FAIL:
-      return updateObject(state, { loading: false });
+      case actionsTypes.BURGER_ORDER_FAIL:
+        return updateObject(state, { loading: false });
 
-    case actionsTypes.ORDERS_FETCH_SUCCESS:
+    case actionsTypes.ORDERS_FETCH_START:
+      return updateObject(state, { loading: true });
+
+        case actionsTypes.ORDERS_FETCH_SUCCESS:
       return updateObject(state, {
         orders: action.orders,
         loading: false,
@@ -35,9 +38,6 @@ const orderReducer = (state = initialState, action) => {
 
     case actionsTypes.ORDERS_FETCH_FAIL:
       return updateObject(state, { loading: false });
-
-    case actionsTypes.ORDERS_FETCH_START:
-      return updateObject(state, { loading: true });
 
     default:
       return state;
