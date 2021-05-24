@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.66ff3028.chunk.css",
+    "main.css": "/static/css/main.a83394e2.chunk.css",
     "main.js": "/static/js/main.28bd660e.chunk.js",
     "main.js.map": "/static/js/main.28bd660e.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.0025d8e2.js",
-    "runtime-main.js.map": "/static/js/runtime-main.0025d8e2.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3a3c66c2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3a3c66c2.js.map",
     "static/js/2.582ced3f.chunk.js": "/static/js/2.582ced3f.chunk.js",
     "static/js/2.582ced3f.chunk.js.map": "/static/js/2.582ced3f.chunk.js.map",
     "static/css/3.f63cf9a9.chunk.css": "/static/css/3.f63cf9a9.chunk.css",
@@ -14,22 +14,22 @@
     "static/js/4.790cb570.chunk.js": "/static/js/4.790cb570.chunk.js",
     "static/js/4.790cb570.chunk.js.map": "/static/js/4.790cb570.chunk.js.map",
     "static/css/5.3ed4c0b0.chunk.css": "/static/css/5.3ed4c0b0.chunk.css",
-    "static/js/5.7d6e0f90.chunk.js": "/static/js/5.7d6e0f90.chunk.js",
-    "static/js/5.7d6e0f90.chunk.js.map": "/static/js/5.7d6e0f90.chunk.js.map",
+    "static/js/5.4d45276f.chunk.js": "/static/js/5.4d45276f.chunk.js",
+    "static/js/5.4d45276f.chunk.js.map": "/static/js/5.4d45276f.chunk.js.map",
     "static/js/6.8d8c18a2.chunk.js": "/static/js/6.8d8c18a2.chunk.js",
     "static/js/6.8d8c18a2.chunk.js.map": "/static/js/6.8d8c18a2.chunk.js.map",
     "index.html": "/index.html",
     "static/css/3.f63cf9a9.chunk.css.map": "/static/css/3.f63cf9a9.chunk.css.map",
     "static/css/4.b567f027.chunk.css.map": "/static/css/4.b567f027.chunk.css.map",
     "static/css/5.3ed4c0b0.chunk.css.map": "/static/css/5.3ed4c0b0.chunk.css.map",
-    "static/css/main.66ff3028.chunk.css.map": "/static/css/main.66ff3028.chunk.css.map",
+    "static/css/main.a83394e2.chunk.css.map": "/static/css/main.a83394e2.chunk.css.map",
     "static/js/2.582ced3f.chunk.js.LICENSE.txt": "/static/js/2.582ced3f.chunk.js.LICENSE.txt",
     "static/media/burger-logo.ec69c7f6.png": "/static/media/burger-logo.ec69c7f6.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.0025d8e2.js",
+    "static/js/runtime-main.3a3c66c2.js",
     "static/js/2.582ced3f.chunk.js",
-    "static/css/main.66ff3028.chunk.css",
+    "static/css/main.a83394e2.chunk.css",
     "static/js/main.28bd660e.chunk.js"
   ]
 }

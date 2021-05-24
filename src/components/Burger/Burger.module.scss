@@ -15,12 +15,10 @@
 
 @media (max-width: 986px) {
   .Burger {
-    width: 40vw;
-    height: 39vh;
+    width: 45vw;
+    height: 35vh;
     .AddingIngr {
-      margin: 1em auto;
-      font-size: 1.15rem;
-      font-weight: bolder;
+      font-size: 1.25rem;
     }
   }
 }
@@ -30,9 +28,7 @@
     width: 52vw;
     height: 40vh;
     .AddingIngr {
-      margin: 1em auto;
       font-size: 1.1rem;
-      font-weight: bolder;
     }
   }
 }
@@ -44,7 +40,6 @@
   .AddingIngr {
     margin: 0.7em auto;
     font-size: 1rem;
-    font-weight: bolder;
   }
 }
 @media (max-width: 447px) {
@@ -76,14 +71,14 @@
     }
   }
  }
-@media (min-width: 1920px) {
+@media (min-width: 1500px) {
   .Burger {
     height: 45vh;
-    width: 25vw;
+    width: 26vw;
     font-size: 1.5rem;
 
     .AddingIngr {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
   }
  }
@@ -94,7 +89,7 @@
     width: 40vw;
   }
   .AddingIngr {
-    padding: 1rem 0;
+    // padding: 1rem 0;
      font-size: 1.3rem;
   }
 }

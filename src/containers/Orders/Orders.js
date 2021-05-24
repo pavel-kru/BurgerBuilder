@@ -5,7 +5,6 @@ import Order from "../../components/Order/Order";
 import axios from "../../axios-orders";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../store/actions/order";
-import Spinner from "../../components/UI/Spinner/Spinner";
 
 const Orders = (props) => {
   const { onFetchOrders } = props;
